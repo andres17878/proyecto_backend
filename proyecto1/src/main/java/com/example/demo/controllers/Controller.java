@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class Controller {
 	
 	
-	@GetMapping("/hello")
-	public String getNom() {
-		return "hola mundo";
+	@GetMapping("/consultaempresas")
+	public String getEmpresas() {
+		return "empresas";
 	}
 
 	
