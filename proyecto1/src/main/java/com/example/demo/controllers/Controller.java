@@ -5,13 +5,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.repository.BaseDatos;
+import com.fasterxml.jackson.databind.JsonSerializable.Base;
+
 @RestController
 public class Controller {
+
+	BaseDatos bd = new BaseDatos();
+
+	// Execute the method prueba from the class BaseDatos
+	@GetMapping("/prueba")
+	public String getPrueba() {
+		return "prueba";
+	}
+
 	
 	
 	@GetMapping("/consultaempresas")
 	public String getEmpresas() {
-		return "empresas";
+		// call the method consultaEmpresas() from the class BaseDatos
+		return "consultaEmpresas";
 	}
 
 	
@@ -19,6 +32,8 @@ public class Controller {
 	public String getNBye() {
 		return "bye1";
 	}
+
+
 	
 	
 }

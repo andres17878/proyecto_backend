@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS `usuaris` (
+   id int(11) NOT NULL AUTO_INCREMENT,
+   nom varchar(45) NOT NULL,
+   cognom varchar(45) NOT NULL,
+   rol enum('ALUMNE','EMPRESA', 'ADMIN') NOT NULL DEFAULT 'ALUMNE'
+PRIMARY KEY (id)) ENGINE=InnoDB DEFAULT CHARSET=utf8;

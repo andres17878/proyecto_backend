@@ -19,11 +19,31 @@ public class BaseDatos {
         }
     }
 
-    public void consultaEmpresas(){
-        // Check from the h2 database the table "EMPRESA" and its content
-        
+
+    public void prueba() {
+        try {
+            Statement statement = this.conexion.createStatement();
+            statement.executeUpdate("INSERT INTO USUARIS (ID, NOM, COGNOM, TIPUSUSUARI) VALUES (1, 'Mock', 'User', 'EMPRESA')");
+            statement.executeUpdate("INSERT INTO USUARIS (ID, NOM, COGNOM, TIPUSUSUARI) VALUES (2, 'Another', 'User', 'EMPRESA')");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
+    public void consultaEmpresas(){
+        // Check from the h2 database the table "USUARIS" if the user role is "EMPRESA" and 
+        try {
+            Statement statement = this.conexion.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM USUARIS WHERE TIPUSUSUARI = 'EMPRESA'");
+            while (resultSet.next()) {
+                System.out.println("ID: " + resultSet.getInt("ID") + " Nom: " + resultSet.getString("NOM") + " Cognom: " + resultSet.getString("COGNOM") + " Tipus: " + resultSet.getString("TIPUSUSUARI"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
-
+    public String hola(){
+        return "Hola";
+    }
 }
