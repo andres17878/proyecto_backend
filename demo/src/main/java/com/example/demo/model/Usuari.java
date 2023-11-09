@@ -1,9 +1,68 @@
 package com.example.demo.model;
 
-import org.springframework.data.annotation.Id;
+import jakarta.persistence.Id;
+import jakarta.annotation.Generated;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 
+@Entity
+public class Usuari {
 
-public record Usuari (@Id Integer id, String nom, String cognom, TipusUsuari tipusUsuari) {
+    @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(nullable = false, unique = true)
+    private String nom;
+
+    @Column(nullable = false, unique = true)
+    private String cognom;
+
+    @Column(nullable = false, unique = true)
+    private String tipusUsuari;
+
+    public Usuari() {
+    }
+
+    public Usuari(Long id, String nom, String cognom, String tipusUsuari) {
+        this.id = id;
+        this.nom = nom;
+        this.cognom = cognom;
+        this.tipusUsuari = tipusUsuari;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public String getCognom() {
+        return cognom;
+    }
+
+    public String getTipusUsuari() {
+        return tipusUsuari;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public void setCognom(String cognom) {
+        this.cognom = cognom;
+    }
+
+    public void setTipusUsuari(String tipusUsuari) {
+        this.tipusUsuari = tipusUsuari;
+    }
 }
 
 

@@ -4,4 +4,3 @@ CREATE TABLE IF NOT EXISTS usuari(
     cognom varchar(255) NOT NULL,
     tipus enum('ADMIN', 'ALUMNE', 'EMPRESA') NOT NULL
 );
-
