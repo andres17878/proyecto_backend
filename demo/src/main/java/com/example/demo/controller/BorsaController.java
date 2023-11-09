@@ -24,5 +24,25 @@ public class BorsaController {
     public Iterable<Usuari> getBorsa() {
         return borsa.findAll();
     }
-    
+
+    /* 
+    @GetMapping("/usuaris/consultar_empresas")
+
+    POR HACER: ANDRÉS
+    public Iterable<Usuari> getEmpresas(){
+        return "Por Hacer";
+        
+    }
+
+    @GetMapping("/usuaris/afegir_empresas")
+    POR HACER: ANDRÉS
+
+
+    @GetMapping("/usuaris/modificar_empresas")
+    POR HACER: ANXO
+
+
+    @GetMapping("usuaris/eliminar_empresas")
+    POR HACER: ERIC
+    */
 }
