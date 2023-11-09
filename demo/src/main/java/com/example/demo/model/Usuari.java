@@ -1,7 +1,6 @@
 package com.example.demo.model;
 
 import jakarta.persistence.Id;
-import jakarta.annotation.Generated;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,10 +12,10 @@ public class Usuari {
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String nom;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String cognom;
 
     @Column(nullable = false, unique = true)
