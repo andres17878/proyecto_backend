@@ -62,6 +62,7 @@ public class Usuari {
     public void setTipusUsuari(String tipusUsuari) {
         this.tipusUsuari = tipusUsuari;
     }
+
 }
 
 

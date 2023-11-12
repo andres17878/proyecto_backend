@@ -7,4 +7,6 @@ import com.example.demo.model.Usuari;
 
 @Repository
 public interface Borsa extends CrudRepository<Usuari,Long> {
+    Iterable<Usuari> findByTipusUsuari(String tipusUsuari);
+    
 }
