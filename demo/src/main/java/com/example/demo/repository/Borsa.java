@@ -3,10 +3,8 @@ package com.example.demo.repository;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.example.demo.model.Usuari;
+import com.example.demo.model.Empresa;
 
 @Repository
-public interface Borsa extends CrudRepository<Usuari,Long> {
-    Iterable<Usuari> findByTipusUsuari(String tipusUsuari);
-    
+public interface Borsa extends CrudRepository<Empresa,Long> {
 }
