@@ -1,6 +1,5 @@
 package com.example.demo.model;
 
-import org.hibernate.mapping.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
