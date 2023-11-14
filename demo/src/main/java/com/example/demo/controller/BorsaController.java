@@ -42,7 +42,6 @@ public class BorsaController {
         borsa.findById(id).map(empresa -> {
             empresa.setNom(newEmpresa.getNom());
             empresa.setDescripcio(newEmpresa.getDescripcio());
-            empresa.setOfertes(newEmpresa.getOfertes());
             return borsa.save(empresa);
         });
     }
