@@ -53,4 +53,21 @@ public class BorsaController {
         borsa.deleteById(id);
     }
     
+    @GetMapping("/consultar_ofertas")
+    public Iterable<Oferta> getOferta(){
+        return borsa.findAll();
+    }
+    
+    @GetMapping("/consultar_ofertas_empresa")
+    public Iterable<Oferta> getOferta(){
+        return borsa.findById(Long id);
+    } 
+    
+    @DeleteMapping("/eliminar_oferta/{id}")
+    public void deleteOferta(@PathVariable Long id){
+        borsa.deleteById(id);
+    }   
+    
+    
+    
 }
