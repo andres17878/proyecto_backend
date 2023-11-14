@@ -3,15 +3,8 @@ package com.example.demo.repository;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.example.demo.model.Empresa;
+import com.example.demo.model.Oferta;
 
 @Repository
-public interface Borsa extends CrudRepository<Empresa,Long> {
+public interface OfertaRepository extends CrudRepository<Oferta,Long> {
 }
-
-
-
-
-
-
-
