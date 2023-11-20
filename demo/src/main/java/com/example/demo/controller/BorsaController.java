@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.Empresa;
+import com.example.demo.model.Oferta;
 import com.example.demo.repository.Borsa;
+import com.example.demo.repository.OfertaRepository;
 
 @RestController
 @RequestMapping("/")
@@ -19,9 +23,13 @@ public class BorsaController {
     @Autowired
     private final Borsa borsa;
 
+    @Autowired
+    private final OfertaRepository ofertaRepository;
+
    
-    public BorsaController(Borsa borsa) {
+    public BorsaController(Borsa borsa, OfertaRepository ofertaRepository) {
         this.borsa = borsa;
+        this.ofertaRepository = ofertaRepository;
     }
     
     @GetMapping("/consultar_empresas")
@@ -53,20 +61,25 @@ public class BorsaController {
         borsa.deleteById(id);
     }
     
+     
     @GetMapping("/consultar_ofertas")
-    public Iterable<Oferta> getOferta(){
-        return borsa.findAll();
+    public Iterable<Oferta> getOfertas(){
+        return ofertaRepository.findAll();
     }
-    
-    @GetMapping("/consultar_ofertas_empresa")
-    public Iterable<Oferta> getOferta(){
-        return borsa.findById(Long id);
-    } 
-    
+
+    @GetMapping("/consultar_ofertas_empresa/{id}")
+    public Optional<Oferta> getOfertasEmpresa(@PathVariable Long id){
+        return ofertaRepository.findById(id);
+    }
+
+
+    /* 
     @DeleteMapping("/eliminar_oferta/{id}")
     public void deleteOferta(@PathVariable Long id){
         borsa.deleteById(id);
-    }   
+    } 
+    
+    */
     
     
     
