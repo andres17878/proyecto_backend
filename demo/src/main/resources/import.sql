@@ -1,8 +1,10 @@
-INSERT INTO oferta(descripcio, nom) VALUES ('Oferta de trabajo para el sector del metal', 'Oferta Metal SA');
-INSERT INTO oferta(descripcio, nom) VALUES ('Oferta de trabajo para el sector textil', 'Oferta Textil SA');
-INSERT INTO oferta(descripcio, nom) VALUES ('Oferta de trabajo para el sector agrario', 'Oferta Agrario SA');
+INSERT INTO EMPRESA(descripcio, nom) VALUES ('Empresa metal', 'Metal');
+INSERT INTO EMPRESA(descripcio, nom) VALUES ('Empresa quimica', 'Quimica');
+INSERT INTO EMPRESA(descripcio, nom) VALUES ('Empresa alimentaria', 'Alimentaria');
 
-
-INSERT INTO empresa (descripcio, nom, oferta_id) VALUES ('Empresa dedicada al sector del metal', 'Metal SA', 1);
-INSERT INTO empresa (descripcio, nom, oferta_id) VALUES ('Empresa dedicada al sector textil', 'Textil SA', 2);
-INSERT INTO empresa (descripcio, nom, oferta_id) VALUES ('Empresa dedicada al sector de la energía', 'Energia SA', 3);
+INSERT INTO OFERTAS(empresa_id, descripcio, nom) VALUES (1, 'Oferta metal', 'Metal');
+INSERT INTO OFERTAS(empresa_id, descripcio, nom) VALUES (1, 'Oferta metal 2', 'Metal 2');
+INSERT INTO OFERTAS(empresa_id, descripcio, nom) VALUES (2, 'Oferta quimica', 'Quimica');
+INSERT INTO OFERTAS(empresa_id, descripcio, nom) VALUES (2, 'Oferta quimica 2', 'Quimica 2');
+INSERT INTO OFERTAS(empresa_id, descripcio, nom) VALUES (3, 'Oferta alimentaria', 'Alimentaria');
+INSERT INTO OFERTAS(empresa_id, descripcio, nom) VALUES (3, 'Oferta alimentaria 2', 'Alimentaria 2');

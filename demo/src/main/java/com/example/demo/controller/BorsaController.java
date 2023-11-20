@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.Empresa;
-import com.example.demo.model.Oferta;
+import com.example.demo.model.Ofertas;
 import com.example.demo.repository.Borsa;
-import com.example.demo.repository.OfertaRepository;
+import com.example.demo.repository.OfertasRepository;
 
 @RestController
 @RequestMapping("/")
@@ -24,12 +24,13 @@ public class BorsaController {
     private final Borsa borsa;
 
     @Autowired
-    private final OfertaRepository ofertaRepository;
+    private final OfertasRepository ofertasRepository;
 
+    
    
-    public BorsaController(Borsa borsa, OfertaRepository ofertaRepository) {
+    public BorsaController(Borsa borsa, OfertasRepository ofertasRepository) {
         this.borsa = borsa;
-        this.ofertaRepository = ofertaRepository;
+        this.ofertasRepository = ofertasRepository;
     }
     
     @GetMapping("/consultar_empresas")
@@ -60,27 +61,34 @@ public class BorsaController {
     public void deleteEmpresa(@PathVariable Long id){
         borsa.deleteById(id);
     }
+
+    @GetMapping("/afegir_oferta")
+    public void addOferta(Ofertas oferta){
+        ofertasRepository.save(oferta);
+    }
     
-     
+    
     @GetMapping("/consultar_ofertas")
-    public Iterable<Oferta> getOfertas(){
-        return ofertaRepository.findAll();
+    public Iterable<Ofertas> getOfertas(){
+        return ofertasRepository.findAll();
     }
 
-    @GetMapping("/consultar_ofertas_empresa/{id}")
-    public Optional<Oferta> getOfertasEmpresa(@PathVariable Long id){
-        return ofertaRepository.findById(id);
+    @GetMapping("/consultar_ofertas/{id}")
+    public Optional<Ofertas> getOferta(@PathVariable Long id){
+        return ofertasRepository.findById(id);
     }
 
+    @PutMapping("/modificar_ofertas/{id}")
+    public void updateOferta(@PathVariable Long id, @RequestBody Ofertas newOferta){
+        ofertasRepository.findById(id).map(oferta -> {
+            oferta.setNom(newOferta.getNom());
+            oferta.setDescripcio(newOferta.getDescripcio());
+            return ofertasRepository.save(oferta);
+        });
+    }
 
-    /* 
     @DeleteMapping("/eliminar_oferta/{id}")
     public void deleteOferta(@PathVariable Long id){
-        borsa.deleteById(id);
-    } 
-    
-    */
-    
-    
-    
+        ofertasRepository.deleteById(id);
+    }
 }

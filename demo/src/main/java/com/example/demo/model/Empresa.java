@@ -1,13 +1,17 @@
 package com.example.demo.model;
 
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.OneToMany;
+
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Empresa {
@@ -21,9 +25,9 @@ public class Empresa {
     @Column
     private String descripcio;
 
-    @OneToOne
-    @JoinColumn(name="oferta_id")
-    private Oferta oferta;
+    @OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    private List<Ofertas> ofertas;
 
     public Empresa() {
     }
@@ -56,6 +60,26 @@ public class Empresa {
 
     public void setDescripcio(String descripcio) {
         this.descripcio = descripcio;
+    }
+
+    public List<Ofertas> getOfertas() {
+        return ofertas;
+    }
+
+    public void setOfertas(List<Ofertas> ofertas) {
+        this.ofertas = ofertas;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Empresa )) return false;
+        return id != null && id.equals(((Empresa) o).getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
     }
     
 }
