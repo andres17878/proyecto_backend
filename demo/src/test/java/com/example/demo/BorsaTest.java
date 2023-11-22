@@ -20,6 +20,7 @@ public class BorsaTest {
     @Autowired
     private Borsa borsa;
 
+    // Cuando se llama a este método se inserta una empresa en la base de datos
     private Empresa insertDemoEmpresa(){
         Empresa empresa = new Empresa(null, "Empresa de prova", "Això és una empresa de prova");
         entityManager.persist(empresa);
@@ -32,9 +33,32 @@ public class BorsaTest {
     void findAll() {
         insertDemoEmpresa();
         Iterable <Empresa> empresas = borsa.findAll();
-        ArrayList <Empresa> empresasList = new ArrayList <Empresa> ();
-        empresas.forEach(empresasList::add);
-        System.out.println(empresasList.size());
-        assert(empresasList.size() >= 1);
+        assert(empresas.iterator().hasNext());
     }
+
+    // Este test comprueba que se añada una empresa a la base de datos
+    @Test
+    void addEmpresa() {
+        Empresa empresa = insertDemoEmpresa();
+        borsa.save(empresa);
+        assert(borsa.findById(empresa.getId()).isPresent());
+    }
+
+    // En este test se introduce una empresa, se modifica y se comprueba que se ha modificado
+    @Test 
+    void updateEmpresa(){
+        Empresa empresa = insertDemoEmpresa();
+        empresa.setNom("Empresa de prova modificada");
+        borsa.save(empresa);
+        assert(borsa.findById(empresa.getId()).get().getNom().equals("Empresa de prova modificada"));
+    }
+
+    // En este test se introduce una empresa, se elimina y se comprueba que no existe
+    @Test
+    void deleteEmpresa(){
+        Empresa empresa = insertDemoEmpresa();
+        borsa.delete(empresa);
+        assert(!borsa.findById(empresa.getId()).isPresent());
+    }
+
 }
