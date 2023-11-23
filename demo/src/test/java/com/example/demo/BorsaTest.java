@@ -20,7 +20,7 @@ public class BorsaTest {
 
     // Cuando se llama a este método se inserta una empresa en la base de datos
     private Empresa insertDemoEmpresa(){
-        Empresa empresa = new Empresa(null, "Empresa de prova", "Això és una empresa de prova");
+        Empresa empresa = new Empresa(9L, "Empresa de prova", "Això és una empresa de prova");
         entityManager.persist(empresa);
         entityManager.flush();
         return empresa;
