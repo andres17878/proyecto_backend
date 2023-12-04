@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado de empresas</title>
+</head>
+<body>
+
+    <h1>Listado de empresas</h1>
+
+    <table border=1>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Descripció</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr th:if="${empresas.empty}">
+                <td colspan="3">No hay empresas</td>
+            </tr>
+            <tr th:each="empresa : ${empresas}">
+                <td><span th:text="${empresa.id}"></span></td>
+                <td><span th:text="${empresa.nom}"></span></td>
+                <td><span th:text="${empresa.descripcio}"></span></td>
+            </tr>
+        </tbody>
+
+    </table>
+    
+
+
+    
+</body>
+</html>

@@ -7,20 +7,20 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
 import com.example.demo.model.Empresa;
-import com.example.demo.repository.Borsa;
+import com.example.demo.repository.EmpresaRepository;
 
 @DataJpaTest
-public class BorsaTest {
+public class EmpresaRepositoryTest {
 
     @Autowired
     private TestEntityManager entityManager;
 
     @Autowired
-    private Borsa borsa;
+    private EmpresaRepository empresaRepo;
 
     // Cuando se llama a este método se inserta una empresa en la base de datos
     private Empresa insertDemoEmpresa(){
-        Empresa empresa = new Empresa(9L, "Empresa de prova", "Això és una empresa de prova");
+        Empresa empresa = new Empresa(null, "Empresa de prova", "Això és una empresa de prova");
         entityManager.persist(empresa);
         entityManager.flush();
         return empresa;
@@ -30,7 +30,7 @@ public class BorsaTest {
     @Test
     void findAll() {
         insertDemoEmpresa();
-        Iterable <Empresa> empresas = borsa.findAll();
+        Iterable <Empresa> empresas = empresaRepo.findAll();
         assert(empresas.iterator().hasNext());
     }
 
@@ -38,8 +38,8 @@ public class BorsaTest {
     @Test
     void addEmpresa() {
         Empresa empresa = insertDemoEmpresa();
-        borsa.save(empresa);
-        assert(borsa.findById(empresa.getId()).isPresent());
+        empresaRepo.save(empresa);
+        assert(empresaRepo.findById(empresa.getId()).isPresent());
     }
 
     // En este test se introduce una empresa, se modifica y se comprueba que se ha modificado
@@ -47,16 +47,16 @@ public class BorsaTest {
     void updateEmpresa(){
         Empresa empresa = insertDemoEmpresa();
         empresa.setNom("Empresa de prova modificada");
-        borsa.save(empresa);
-        assert(borsa.findById(empresa.getId()).get().getNom().equals("Empresa de prova modificada"));
+        empresaRepo.save(empresa);
+        assert(empresaRepo.findById(empresa.getId()).get().getNom().equals("Empresa de prova modificada"));
     }
 
     // En este test se introduce una empresa, se elimina y se comprueba que no existe
     @Test
     void deleteEmpresa(){
         Empresa empresa = insertDemoEmpresa();
-        borsa.delete(empresa);
-        assert(!borsa.findById(empresa.getId()).isPresent());
+        empresaRepo.delete(empresa);
+        assert(!empresaRepo.findById(empresa.getId()).isPresent());
     }
 
 }

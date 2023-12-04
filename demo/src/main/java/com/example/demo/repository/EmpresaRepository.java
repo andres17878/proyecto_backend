@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.example.demo.model.Empresa;
 
 @Repository
-public interface Borsa extends JpaRepository<Empresa,Long> {
+public interface EmpresaRepository extends JpaRepository<Empresa,Long> {
 }
 
 
