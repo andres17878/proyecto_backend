@@ -1,5 +1,6 @@
 package com.example.demo.security;
 
+import com.example.demo.model.Usuari;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import io.jsonwebtoken.security.SignatureException;
@@ -9,8 +10,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
-
-import com.example.demo.model.Usuari;
 
 import java.util.Date;
 

@@ -1,9 +1,7 @@
 package com.example.demo.model;
 
-import java.util.Collection;
-import java.util.List;
-
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.Column;
@@ -16,12 +14,13 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 @Entity
 public class Usuari implements UserDetails {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -40,7 +39,8 @@ public class Usuari implements UserDetails {
     public Usuari() {
     }
 
-    public Usuari(String username, String password, String email, List<UsuariAuthority> authorities) {
+    public Usuari(Long id, String username, String password, String email, List<UsuariAuthority> authorities) {
+        this.id = id;
         this.username = username;
         this.password = password;
         this.email = email;
@@ -65,31 +65,30 @@ public class Usuari implements UserDetails {
     }
 
     @Override
-    public boolean isEnabled() {
+    public boolean isAccountNonExpired() {
         return true;
     }
 
     @Override
-    public boolean isAccountNonExpired() {
-        return false;
-    }
-
-    @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
-    public String getEmail() {
-        return this.email;
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 
     public Long getId() {
-        return this.id;
+        return id;
     }
 
+    public String getEmail() {
+        return email;
+    }
 }
