@@ -9,17 +9,19 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 @Entity
+@Table (name = "ofertas")
 public class Ofertas {
 
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
-    @Column
+    @Column (name = "nom" , nullable = false)
     private String nom;
 
-    @Column
+    @Column (name = "descripcio" , nullable = false)
     private String descripcio;
 
     

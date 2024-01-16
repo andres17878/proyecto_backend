@@ -4,28 +4,31 @@ package com.example.demo.model;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
+@Table(name = "empresa")
 public class Empresa {
 
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
-    @Column
+    @Column (name = "nom" , nullable = false)
     private String nom;
 
-    @Column
+    @Column (name = "descripcio" , nullable = false)
     private String descripcio;
 
-    @OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonManagedReference
     private List<Ofertas> ofertas;
 

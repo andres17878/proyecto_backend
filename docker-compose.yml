@@ -1,0 +1,23 @@
+version: '3'
+services:
+  mysql:
+    image: mysql:5.7
+    container_name: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: Root183A!
+      MYSQL_DATABASE: borsa_db
+      MYSQL_USER: root
+      MYSQL_PASSWORD: Root183A!
+    ports:
+      - 3306:3306
+    volumes:
+      - ./mysql:/var/lib/mysql
+    
+  backend:
+    image: springbootapp:2.0
+    container_name: spring-backend
+    ports:
+      - 8080:8080
+    depends_on:
+      - mysql

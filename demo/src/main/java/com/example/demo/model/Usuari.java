@@ -13,20 +13,24 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 @Entity
+@Table (name = "usuari")
 public class Usuari implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "username", unique = true)
     private String username;
 
+    @Column(name = "password" , nullable = false)
     private String password;
 
     @Column(unique = true)
